@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Internet demo">
+  <rect width="900" height="600" fill="#f7fbff"/>
+  <rect x="130" y="135" width="640" height="350" rx="30" fill="#fff" stroke="#d6e2f1" stroke-width="10"/>
+  <rect x="185" y="185" width="530" height="105" rx="18" fill="#0f3f88"/>
+  <text x="450" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#fff">Internet</text>
+  <path d="M320 385c72-72 188-72 260 0" fill="none" stroke="#c9282d" stroke-width="26" stroke-linecap="round"/>
+  <path d="M375 435c42-42 108-42 150 0" fill="none" stroke="#21865a" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="450" cy="475" r="24" fill="#ffd166"/>
+</svg>

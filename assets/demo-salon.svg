@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Salón demo">
+  <rect width="900" height="600" fill="#fff7fb"/>
+  <rect x="120" y="140" width="660" height="340" rx="30" fill="#fff" stroke="#d6e2f1" stroke-width="10"/>
+  <rect x="170" y="185" width="560" height="95" rx="18" fill="#c9282d"/>
+  <text x="450" y="249" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#fff">Salón</text>
+  <circle cx="380" cy="370" r="78" fill="#dbeafe"/>
+  <path d="M320 365c32-92 112-92 140 0 18 58-6 95-70 95s-88-37-70-95Z" fill="#0f3f88"/>
+  <path d="M525 330l105 105M630 330 525 435" stroke="#ffd166" stroke-width="22" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Ferretería demo">
+  <rect width="900" height="600" fill="#f7fbff"/>
+  <rect x="110" y="130" width="680" height="360" rx="28" fill="#fff" stroke="#d6e2f1" stroke-width="10"/>
+  <rect x="145" y="165" width="610" height="100" rx="16" fill="#c9282d"/>
+  <text x="450" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="50" font-weight="800" fill="#fff">Ferretería</text>
+  <path d="M290 360l95-95 55 55-95 95c-16 16-40 16-55 0s-16-39 0-55Z" fill="#0f3f88"/>
+  <path d="M488 268l95 95" stroke="#0f3f88" stroke-width="42" stroke-linecap="round"/>
+  <path d="M555 240l88 88" stroke="#ffd166" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="320" cy="390" r="18" fill="#fff"/>
+</svg>

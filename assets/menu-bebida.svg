@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-label="Bebida demo">
+  <rect width="600" height="420" fill="#f7fbff"/>
+  <path d="M230 100h140l-22 250H252Z" fill="#dbeafe"/>
+  <path d="M250 175h100l-15 155h-70Z" fill="#ffd166"/>
+  <path d="M300 100l55-56" stroke="#c9282d" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="365" cy="88" r="30" fill="#21865a"/>
+  <text x="300" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#0b2f67">Bebida</text>
+</svg>

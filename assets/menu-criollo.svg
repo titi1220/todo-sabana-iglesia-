@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-label="Plato criollo demo">
+  <rect width="600" height="420" fill="#f7fbff"/>
+  <circle cx="300" cy="210" r="145" fill="#dbeafe"/>
+  <circle cx="300" cy="210" r="112" fill="#fff"/>
+  <circle cx="260" cy="180" r="48" fill="#f8fafc"/>
+  <path d="M235 270c35-50 95-66 145-30 28 20 45 49 53 80H230c-3-18-1-35 5-50Z" fill="#c9282d"/>
+  <path d="M315 160c45-28 92-15 115 25-26 20-72 32-121 18Z" fill="#21865a"/>
+  <circle cx="228" cy="238" r="28" fill="#ffd166"/>
+  <text x="300" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#0b2f67">Plato criollo</text>
+</svg>

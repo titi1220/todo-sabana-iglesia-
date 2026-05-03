@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Taller demo">
+  <rect width="900" height="600" fill="#f7fbff"/>
+  <rect x="105" y="165" width="690" height="305" rx="30" fill="#fff" stroke="#d6e2f1" stroke-width="10"/>
+  <rect x="160" y="210" width="580" height="90" rx="16" fill="#0f3f88"/>
+  <text x="450" y="272" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="800" fill="#fff">Taller</text>
+  <path d="M255 392h380l-45-80H300Z" fill="#c9282d"/>
+  <circle cx="330" cy="405" r="48" fill="#0b2f67"/>
+  <circle cx="560" cy="405" r="48" fill="#0b2f67"/>
+  <circle cx="330" cy="405" r="20" fill="#fff"/>
+  <circle cx="560" cy="405" r="20" fill="#fff"/>
+</svg>
