@@ -4,8 +4,12 @@ const categories = [
   { name: "Ferreterías", icon: "F", summary: "Construcción, herramientas y hogar", services: ["Entrega", "Recoger"], page: "ferreterias-en-sabana-iglesia.html", seoTitle: "Ferreterías en Sabana Iglesia", seoText: "Directorio de ferreterías, materiales de construcción, pinturas, herramientas y artículos para el hogar." },
   { name: "Farmacias", icon: "Rx", summary: "Salud, medicamentos y cuidado", services: ["Entrega", "Recoger"], page: "farmacias-en-sabana-iglesia.html", seoTitle: "Farmacias en Sabana Iglesia", seoText: "Encuentra farmacias, medicamentos, productos de cuidado personal y teléfonos útiles en Sabana Iglesia." },
   { name: "Salones", icon: "S", summary: "Belleza, barberías y cuidado personal", page: "salones-en-sabana-iglesia.html", seoTitle: "Salones en Sabana Iglesia", seoText: "Salones de belleza, barberías, uñas, maquillaje y servicios de cuidado personal en Sabana Iglesia." },
-  { name: "Talleres", icon: "T", summary: "Mecánica, gomas y repuestos", page: "talleres-en-sabana-iglesia.html", seoTitle: "Talleres en Sabana Iglesia", seoText: "Talleres mecánicos, gomeras, repuestos y servicios para vehículos en Sabana Iglesia." },
-  { name: "Internet", icon: "Wi", summary: "Tecnología, cable y conectividad", page: "internet-en-sabana-iglesia.html", seoTitle: "Internet en Sabana Iglesia", seoText: "Servicios de internet, cable, tecnología, soporte técnico e instalación para hogares y negocios." },
+  { name: "Talleres", icon: "T", summary: "Mecánica, gomas y reparación", page: "talleres-en-sabana-iglesia.html", seoTitle: "Talleres en Sabana Iglesia", seoText: "Talleres mecánicos, gomeras, lavado y servicios para vehículos en Sabana Iglesia." },
+  { name: "Automotriz y Repuestos", icon: "Au", summary: "Repuestos, piezas y servicios de vehículos", page: "automotriz-repuestos-en-sabana-iglesia.html", seoTitle: "Automotriz y repuestos en Sabana Iglesia", seoText: "Repuestos, piezas, accesorios, estaciones y servicios automotrices en Sabana Iglesia." },
+  { name: "Celulares e Internet", icon: "Cel", summary: "Celulares, internet, tecnología y cable", page: "celulares-internet-en-sabana-iglesia.html", seoTitle: "Celulares e internet en Sabana Iglesia", seoText: "Tiendas de celulares, internet, cable, tecnología, soporte técnico e instalación para hogares y negocios." },
+  { name: "Remesas y Finanzas", icon: "$", summary: "Remesas, cambio y servicios financieros", page: "remesas-finanzas-en-sabana-iglesia.html", seoTitle: "Remesas y finanzas en Sabana Iglesia", seoText: "Servicios de remesas, cambio de moneda, pagos y oficinas financieras disponibles en Sabana Iglesia." },
+  { name: "Shopping", icon: "Sh", summary: "Tiendas, plazas y compras locales", page: "shopping-en-sabana-iglesia.html", seoTitle: "Shopping en Sabana Iglesia", seoText: "Tiendas, plazas, librerías, misceláneas y opciones de compras locales en Sabana Iglesia." },
+  { name: "Entretenimiento", icon: "En", summary: "Diversión, salidas y vida social", page: "entretenimiento-en-sabana-iglesia.html", seoTitle: "Entretenimiento en Sabana Iglesia", seoText: "Lugares de diversión, salidas familiares, actividades sociales y opciones de entretenimiento local." },
   { name: "Iglesias", icon: "I", summary: "Comunidades de fe y actividades", page: "iglesias-en-sabana-iglesia.html", seoTitle: "Iglesias en Sabana Iglesia", seoText: "Iglesias, comunidades de fe, horarios de culto y actividades religiosas de Sabana Iglesia." },
   { name: "Turismo", icon: "Tu", summary: "Rutas, miradores, ríos y Presa de Bao", page: "turismo-en-sabana-iglesia.html", seoTitle: "Turismo en Sabana Iglesia", seoText: "Lugares turísticos, rutas, montañas, ríos, miradores y atractivos cercanos a la Presa de Bao." },
   { name: "Eventos", icon: "E", summary: "Cultura, deporte y celebraciones", page: "eventos-en-sabana-iglesia.html", seoTitle: "Eventos en Sabana Iglesia", seoText: "Eventos culturales, deportivos, religiosos, patronales y actividades comunitarias en Sabana Iglesia." }
@@ -56,7 +60,7 @@ const importedBusinesses = [
   {
     id: "repuestos-y-ferreteria-santana",
     name: "Repuestos y Ferretería Santana",
-    category: "Talleres",
+    category: "Automotriz y Repuestos",
     description: "Automotive / motorcycle parts. 27 reviews listed.",
     phone: "809 337-4022",
     whatsapp: "",
@@ -70,7 +74,7 @@ const importedBusinesses = [
   {
     id: "repuestos-almonte",
     name: "Repuestos Almonte",
-    category: "Talleres",
+    category: "Automotriz y Repuestos",
     description: "Auto parts.",
     phone: "809-587-1250",
     whatsapp: "",
@@ -84,7 +88,7 @@ const importedBusinesses = [
   {
     id: "cd-movil-comunicaciones",
     name: "Cd-Móvil Comunicaciones",
-    category: "Internet",
+    category: "Celulares e Internet",
     description: "Electronics / mobile phones. Founded in 2005 according to source.",
     phone: "809 337-4548",
     whatsapp: "",
@@ -98,7 +102,7 @@ const importedBusinesses = [
   {
     id: "super-centro-de-internet-el-pana",
     name: "Super Centro de Internet El Pana",
-    category: "Internet",
+    category: "Celulares e Internet",
     description: "Internet services. 4.7 rating listed.",
     phone: "809-587-1493",
     whatsapp: "",
@@ -154,7 +158,7 @@ const importedBusinesses = [
   {
     id: "jehova-es-mi-pastor",
     name: "Jehová Es Mi Pastor",
-    category: "Servicios",
+    category: "Shopping",
     description: "Bookstore.",
     phone: "809-587-1485",
     whatsapp: "",
@@ -168,7 +172,7 @@ const importedBusinesses = [
   {
     id: "caribe-express",
     name: "Caribe Express",
-    category: "Servicios",
+    category: "Remesas y Finanzas",
     description: "Currency exchange / money services. 4.7 rating listed.",
     phone: "809-587-0012",
     whatsapp: "",
@@ -182,7 +186,7 @@ const importedBusinesses = [
   {
     id: "vimenca-western-union",
     name: "Vimenca & Western Union",
-    category: "Servicios",
+    category: "Remesas y Finanzas",
     description: "Money transfer / financial services.",
     phone: "809 587-1216",
     whatsapp: "",
@@ -196,7 +200,7 @@ const importedBusinesses = [
   {
     id: "centro-comercial-dr-placencia",
     name: "Centro Comercial Dr Placencia",
-    category: "Ferreterías",
+    category: "Shopping",
     description: "Shopping plaza. 4.7 rating listed. Another directory listing shows 809-587-0086 at Ppal 1, M La Zanja.",
     phone: "809-587-0144",
     whatsapp: "",
@@ -266,7 +270,7 @@ const importedBusinesses = [
   {
     id: "centro-tecnologico-comunitario-sabana-ig",
     name: "Centro Tecnológico Comunitario Sabana IG",
-    category: "Internet",
+    category: "Celulares e Internet",
     description: "Community technology center / social service.",
     phone: "809-587-1087",
     whatsapp: "",
@@ -280,7 +284,7 @@ const importedBusinesses = [
   {
     id: "estacion-texaco-sabana-iglesia",
     name: "Estación Texaco Sabana Iglesia",
-    category: "Servicios",
+    category: "Automotriz y Repuestos",
     description: "Gas station. Directory result labels it as Estación Texaco Sabana Iglesia.",
     phone: "809-587-0040",
     whatsapp: "",
@@ -300,8 +304,11 @@ const categoryImageDefaults = {
   Farmacias: "assets/demo-farmacia.svg",
   Salones: "assets/demo-salon.svg",
   Talleres: "assets/demo-taller.svg",
-  Internet: "assets/demo-internet.svg",
-  Servicios: "assets/sabana-iglesia-drone.jpg"
+  "Automotriz y Repuestos": "assets/demo-taller.svg",
+  "Celulares e Internet": "assets/demo-internet.svg",
+  "Remesas y Finanzas": "assets/sabana-iglesia-drone.jpg",
+  Shopping: "assets/sabana-iglesia-drone.jpg",
+  Entretenimiento: "assets/sabana-iglesia-drone.jpg"
 };
 
 const restaurantMenus = {
@@ -397,12 +404,29 @@ function getBusinesses(includePending = false) {
   return includePending ? all : all.filter((business) => business.status === "approved");
 }
 
+function normalizeCategory(business) {
+  const category = business.category || "";
+  const name = (business.name || "").toLowerCase();
+  const description = (business.description || "").toLowerCase();
+  if (category === "Internet") return "Celulares e Internet";
+  if (category === "Servicios") {
+    if (name.includes("caribe") || name.includes("vimenca") || name.includes("western") || description.includes("money") || description.includes("currency") || description.includes("remesa")) return "Remesas y Finanzas";
+    if (name.includes("texaco") || description.includes("gas station")) return "Automotriz y Repuestos";
+    return "Shopping";
+  }
+  if (category === "Talleres" && (name.includes("repuesto") || description.includes("auto parts") || description.includes("motorcycle parts"))) return "Automotriz y Repuestos";
+  if (category === "Ferreterías" && (name.includes("centro comercial") || description.includes("shopping plaza"))) return "Shopping";
+  return category;
+}
+
 function normalizeBusiness(business) {
-  const defaultImage = categoryImageDefaults[business.category] || "assets/sabana-iglesia-drone.jpg";
+  const category = normalizeCategory(business);
+  const defaultImage = categoryImageDefaults[category] || "assets/sabana-iglesia-drone.jpg";
   const photos = Array.isArray(business.photos) && business.photos.length ? business.photos : [business.image || defaultImage, "assets/sabana-iglesia-drone.jpg", business.image || defaultImage];
   return {
     ...business,
     id: business.id || slugify(business.name || "negocio"),
+    category,
     whatsapp: business.whatsapp || "",
     map: business.map || `https://maps.google.com/?q=${encodeURIComponent(`${business.name || ""} ${business.address || "Sabana Iglesia"}`)}`,
     hours: business.hours || "Horario por confirmar",
