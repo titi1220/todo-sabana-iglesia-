@@ -960,11 +960,76 @@ function renderManagerForm() {
   });
 }
 
-function renderAdmin() {
+async function renderAdmin() {
   const list = document.querySelector("[data-admin-list]");
   const managerList = document.querySelector("[data-manager-list]");
+  const loginForm = document.querySelector("[data-admin-login]");
+  const adminMessage = document.querySelector("[data-admin-message]");
+  const refreshButton = document.querySelector("[data-refresh-admin]");
+  const logoutButton = document.querySelector("[data-admin-logout]");
   if (!list && !managerList) return;
-  const draw = () => {
+
+  const getAdminSession = async () => {
+    if (!supabaseClient) return null;
+    const { data } = await supabaseClient.auth.getSession();
+    return data.session;
+  };
+
+  const setAdminState = (isLoggedIn) => {
+    if (loginForm) loginForm.classList.toggle("is-hidden", isLoggedIn);
+    refreshButton?.classList.toggle("is-hidden", !isLoggedIn || !supabaseClient);
+    logoutButton?.classList.toggle("is-hidden", !isLoggedIn || !supabaseClient);
+  };
+
+  const businessFields = ["name", "category", "description", "phone", "whatsapp", "address", "map", "hours", "social", "image", "status"];
+
+  const loadRemotePending = async () => {
+    if (!supabaseClient) return null;
+    const session = await getAdminSession();
+    setAdminState(Boolean(session));
+    if (!session) {
+      if (list) list.innerHTML = `<p>Inicia sesión para ver las solicitudes guardadas en Supabase.</p>`;
+      return null;
+    }
+    const { data, error } = await supabaseClient
+      .from("businesses")
+      .select("*")
+      .eq("status", "pending")
+      .order("created_at", { ascending: false });
+    if (error) {
+      if (list) list.innerHTML = `<p>No se pudieron cargar las solicitudes: ${error.message}</p>`;
+      return null;
+    }
+    return data || [];
+  };
+
+  const drawRemote = async () => {
+    const items = await loadRemotePending();
+    if (!list || !items) return;
+    list.innerHTML = items.length ? items.map((item) => `
+      <article class="admin-card" data-remote-id="${item.id}">
+        <div>
+          <span class="badge">Pendiente</span>
+          <input data-remote-field="name" value="${item.name || ""}" placeholder="Nombre">
+          <select data-remote-field="category">${getDirectoryCategories([...getBusinesses(true), item]).map((category) => `<option ${category === item.category ? "selected" : ""}>${category}</option>`).join("")}</select>
+          <textarea data-remote-field="description" rows="3" placeholder="Descripción">${item.description || ""}</textarea>
+          <input data-remote-field="phone" value="${item.phone || ""}" placeholder="Teléfono">
+          <input data-remote-field="whatsapp" value="${item.whatsapp || ""}" placeholder="WhatsApp">
+          <input data-remote-field="address" value="${item.address || ""}" placeholder="Dirección">
+          <input data-remote-field="map" value="${item.map || ""}" placeholder="Mapa">
+          <input data-remote-field="hours" value="${item.hours || ""}" placeholder="Horario">
+          <input data-remote-field="social" value="${item.social || ""}" placeholder="Red social">
+          <input data-remote-field="image" value="${item.image || ""}" placeholder="Imagen principal">
+        </div>
+        <div class="admin-card__actions">
+          <button class="btn btn--primary" data-remote-action="approve" type="button">Aprobar</button>
+          <button class="btn btn--outline" data-remote-action="save" type="button">Guardar</button>
+          <button class="btn btn--outline" data-remote-action="delete" type="button">Eliminar</button>
+        </div>
+      </article>`).join("") : `<p>No hay solicitudes pendientes en Supabase.</p>`;
+  };
+
+  const drawLocal = () => {
     const items = getSubmissions();
     if (list) {
       list.innerHTML = items.length ? items.map((item) => `
@@ -984,6 +1049,14 @@ function renderAdmin() {
         </div>
       </article>`).join("") : `<p>No hay solicitudes pendientes. Los negocios enviados desde el formulario aparecerán aquí.</p>`;
     }
+  };
+
+  const draw = async () => {
+    if (supabaseClient) {
+      await drawRemote();
+      return;
+    }
+    drawLocal();
   };
 
   const drawManagers = () => {
@@ -1009,7 +1082,62 @@ function renderAdmin() {
       </article>`).join("") : `<p>No hay solicitudes de managers. Las solicitudes enviadas desde Contacto aparecerán aquí.</p>`;
   };
 
-  list?.addEventListener("click", (event) => {
+  loginForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!supabaseClient) {
+      adminMessage.textContent = "Supabase no está conectado.";
+      return;
+    }
+    const data = Object.fromEntries(new FormData(loginForm));
+    adminMessage.textContent = "Entrando...";
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email: data.email,
+      password: data.password
+    });
+    if (error) {
+      adminMessage.textContent = `No se pudo iniciar sesión: ${error.message}`;
+      return;
+    }
+    adminMessage.textContent = "Sesión iniciada.";
+    loginForm.reset();
+    await draw();
+  });
+
+  logoutButton?.addEventListener("click", async () => {
+    if (supabaseClient) await supabaseClient.auth.signOut();
+    setAdminState(false);
+    await draw();
+  });
+
+  refreshButton?.addEventListener("click", draw);
+
+  list?.addEventListener("click", async (event) => {
+    const remoteButton = event.target.closest("[data-remote-action]");
+    if (remoteButton) {
+      const card = remoteButton.closest("[data-remote-id]");
+      const id = card.dataset.remoteId;
+      if (remoteButton.dataset.remoteAction === "delete") {
+        const { error } = await supabaseClient.from("businesses").delete().eq("id", id);
+        if (error) {
+          adminMessage.textContent = `No se pudo eliminar: ${error.message}`;
+          return;
+        }
+        await draw();
+        return;
+      }
+      const fields = Object.fromEntries([...card.querySelectorAll("[data-remote-field]")].map((field) => [field.dataset.remoteField, field.value]));
+      const payload = Object.fromEntries(businessFields.filter((field) => fields[field] !== undefined).map((field) => [field, fields[field]]));
+      if (remoteButton.dataset.remoteAction === "approve") payload.status = "approved";
+      const { error } = await supabaseClient.from("businesses").update(payload).eq("id", id);
+      if (error) {
+        adminMessage.textContent = `No se pudo guardar: ${error.message}`;
+        return;
+      }
+      adminMessage.textContent = remoteButton.dataset.remoteAction === "approve" ? "Negocio aprobado." : "Cambios guardados.";
+      await draw();
+      return;
+    }
+
     const button = event.target.closest("[data-action]");
     if (!button) return;
     const card = button.closest("[data-id]");
@@ -1017,7 +1145,7 @@ function renderAdmin() {
     let items = getSubmissions();
     if (button.dataset.action === "delete") {
       setSubmissions(items.filter((item) => item.id !== id));
-      draw();
+      await draw();
       return;
     }
     items = items.map((item) => {
@@ -1026,7 +1154,7 @@ function renderAdmin() {
       return { ...item, ...fields, status: button.dataset.action === "approve" ? "approved" : item.status };
     });
     setSubmissions(items);
-    draw();
+    await draw();
   });
 
   managerList?.addEventListener("click", (event) => {
@@ -1059,7 +1187,7 @@ function renderAdmin() {
     drawManagers();
   });
 
-  draw();
+  await draw();
   drawManagers();
 }
 

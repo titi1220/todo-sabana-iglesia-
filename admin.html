@@ -13,14 +13,22 @@
   <body data-page="admin">
     <header class="site-header" data-site-header></header>
     <main class="page-shell">
-      <section class="page-hero page-hero--compact"><div class="container"><p class="eyebrow">Administración</p><h1>Panel local</h1><p>Aprueba negocios y solicitudes de managers guardadas localmente en este navegador.</p></div></section>
+      <section class="page-hero page-hero--compact"><div class="container"><p class="eyebrow">Administración</p><h1>Panel admin</h1><p>Inicia sesión para revisar, aprobar, editar o eliminar negocios enviados desde el formulario.</p></div></section>
       <section class="section">
         <div class="container admin-shell">
           <div class="section-heading">
             <p class="eyebrow">Solicitudes de negocios</p>
             <h2>Negocios pendientes</h2>
           </div>
+          <form class="admin-login" data-admin-login>
+            <label>Correo admin<input name="email" type="email" required placeholder="todosabanaiglesia@gmail.com"></label>
+            <label>Contraseña<input name="password" type="password" required placeholder="Tu contraseña de Supabase"></label>
+            <button class="btn btn--primary" type="submit">Entrar al admin</button>
+            <p class="form-message" data-admin-message role="status"></p>
+          </form>
           <div class="admin-toolbar">
+            <button class="btn btn--outline" data-refresh-admin type="button">Actualizar solicitudes</button>
+            <button class="btn btn--outline" data-admin-logout type="button">Cerrar sesión</button>
             <button class="btn btn--outline" data-clear-submissions type="button">Limpiar solicitudes</button>
           </div>
           <div class="admin-list" data-admin-list></div>
