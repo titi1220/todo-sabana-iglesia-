@@ -12,6 +12,7 @@ const categories = [
 ];
 
 const supabaseConfig = window.TSI_SUPABASE_CONFIG || {};
+const businessImagesBucket = "business-images";
 const hasSupabaseConfig = Boolean(
   window.supabase &&
   supabaseConfig.url &&
@@ -465,6 +466,23 @@ function imageTag(src, alt, className = "") {
   return `<img ${className ? `class="${className}"` : ""} src="${src}" alt="${alt}" loading="lazy">`;
 }
 
+async function uploadBusinessImage(file, businessName, type = "gallery") {
+  if (!supabaseClient || !file || !file.size) return "";
+  const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`;
+  const path = `${slugify(businessName || "negocio")}/${type}/${fileName}`;
+  const { error } = await supabaseClient.storage
+    .from(businessImagesBucket)
+    .upload(path, file, {
+      cacheControl: "3600",
+      contentType: file.type || "image/jpeg",
+      upsert: false
+    });
+  if (error) throw new Error(`No se pudo subir ${file.name}: ${error.message}`);
+  const { data } = supabaseClient.storage.from(businessImagesBucket).getPublicUrl(path);
+  return data.publicUrl;
+}
+
 function logoSvg() {
   return `
     <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="Logo Todo Sabana Iglesia">
@@ -835,39 +853,60 @@ function renderBusinessForm() {
   });
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    const submitButton = form.querySelector("[type='submit']");
+    submitButton.disabled = true;
     const data = Object.fromEntries(new FormData(form));
     const category = data.category === "Otra" ? data.otherCategory.trim() : data.category;
-    const photos = (data.photos || "").split(",").map((photo) => photo.trim()).filter(Boolean);
-    const item = {
-      name: data.name,
-      category,
-      description: data.description,
-      phone: data.phone,
-      whatsapp: data.whatsapp || `https://wa.me/${data.phone.replace(/\D/g, "")}`,
-      address: data.address,
-      map: data.map || `https://maps.google.com/?q=${encodeURIComponent(data.address + " Sabana Iglesia")}`,
-      hours: data.hours || "Horario por confirmar",
-      social: data.social || "#",
-      image: data.image,
-      photos,
-      email: data.email,
-      featured: false,
-      status: "pending"
-    };
-    if (supabaseClient) {
-      const { email, ...supabaseItem } = item;
-      const { error } = await supabaseClient.from("businesses").insert([supabaseItem]);
-      if (error) {
-        message.textContent = `No se pudo enviar la solicitud: ${error.message}`;
+    const pastedPhotos = (data.photos || "").split(",").map((photo) => photo.trim()).filter(Boolean);
+    const mainImageFile = form.elements.mainImageFile?.files?.[0];
+    const galleryFiles = [...(form.elements.galleryFiles?.files || [])];
+    try {
+      let uploadedMainImage = "";
+      let uploadedGallery = [];
+      if (supabaseClient && (mainImageFile || galleryFiles.length)) {
+        message.textContent = "Subiendo imágenes...";
+        uploadedMainImage = mainImageFile ? await uploadBusinessImage(mainImageFile, data.name, "principal") : "";
+        uploadedGallery = await Promise.all(galleryFiles.map((file) => uploadBusinessImage(file, data.name)));
+      }
+      const image = uploadedMainImage || data.image;
+      const photos = [...(image ? [image] : []), ...uploadedGallery, ...pastedPhotos];
+      const item = {
+        name: data.name,
+        category,
+        description: data.description,
+        phone: data.phone,
+        whatsapp: data.whatsapp || `https://wa.me/${data.phone.replace(/\D/g, "")}`,
+        address: data.address,
+        map: data.map || `https://maps.google.com/?q=${encodeURIComponent(data.address + " Sabana Iglesia")}`,
+        hours: data.hours || "Horario por confirmar",
+        social: data.social || "#",
+        image,
+        photos,
+        email: data.email,
+        featured: false,
+        status: "pending"
+      };
+      if (supabaseClient) {
+        const { email, ...supabaseItem } = item;
+        const { error } = await supabaseClient.from("businesses").insert([supabaseItem]);
+        if (error) {
+          message.textContent = `No se pudo enviar la solicitud: ${error.message}`;
+          submitButton.disabled = false;
+          return;
+        }
+        form.reset();
+        message.textContent = "Solicitud enviada a Supabase para revisión.";
+        submitButton.disabled = false;
         return;
       }
+      setSubmissions([{ ...item, id: `${slugify(data.name)}-${Date.now()}` }, ...getSubmissions()]);
       form.reset();
-      message.textContent = "Solicitud enviada a Supabase para revisión.";
-      return;
+      message.textContent = "Solicitud enviada para revisión.";
+    } catch (error) {
+      message.textContent = `${error.message}. Revisa que el bucket business-images exista y permita subir imágenes.`;
+    } finally {
+      submitButton.disabled = false;
     }
-    setSubmissions([{ ...item, id: `${slugify(data.name)}-${Date.now()}` }, ...getSubmissions()]);
-    form.reset();
-    message.textContent = "Solicitud enviada para revisión.";
   });
 }
 
