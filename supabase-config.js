@@ -1,4 +1,4 @@
 window.TSI_SUPABASE_CONFIG = {
-  url: "PASTE_SUPABASE_PROJECT_URL_HERE",
-  anonKey: "PASTE_SUPABASE_ANON_PUBLIC_KEY_HERE"
+  url: "https://nzyghjipdeuncejyrvhe.supabase.co",
+  anonKey: "sb_publishable_35Dg_S92OqWwFCyssfd7Iw_oU9BsCCq"
 };
