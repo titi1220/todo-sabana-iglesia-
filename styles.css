@@ -65,19 +65,6 @@ textarea {
   backdrop-filter: blur(14px);
 }
 
-.demo-notice {
-  border-top: 1px solid rgba(214, 226, 241, 0.8);
-  color: var(--blue-dark);
-  background: #f7fbff;
-  font-size: 0.86rem;
-  font-weight: 800;
-}
-
-.demo-notice .container {
-  padding-top: 9px;
-  padding-bottom: 9px;
-}
-
 .nav {
   min-height: 72px;
   display: flex;

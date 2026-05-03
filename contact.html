@@ -6,6 +6,8 @@
     <title>Contacto | Todo Sabana Iglesia</title>
     <meta name="description" content="Contacta a Todo Sabana Iglesia para negocios, noticias, eventos, turismo y publicidad local.">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body data-page="contact">
@@ -39,7 +41,7 @@
           <div>
             <p class="eyebrow">Acceso de manager</p>
             <h2>Solicitar acceso para administrar</h2>
-            <p class="lead">Usa este formulario si quieres ayudar a revisar negocios, eventos o contenido local. En esta versión demo, las solicitudes se guardan en este navegador y se aprueban desde el panel admin.</p>
+            <p class="lead">Usa este formulario si quieres ayudar a revisar negocios, eventos o contenido local. Las solicitudes se revisan desde el panel admin.</p>
           </div>
           <form class="business-form" data-manager-form>
             <label>Nombre completo<input required name="name" placeholder="Tu nombre"></label>

@@ -11,6 +11,16 @@ const categories = [
   { name: "Eventos", icon: "E", summary: "Cultura, deporte y celebraciones", page: "eventos-en-sabana-iglesia.html", seoTitle: "Eventos en Sabana Iglesia", seoText: "Eventos culturales, deportivos, religiosos, patronales y actividades comunitarias en Sabana Iglesia." }
 ];
 
+const supabaseConfig = window.TSI_SUPABASE_CONFIG || {};
+const hasSupabaseConfig = Boolean(
+  window.supabase &&
+  supabaseConfig.url &&
+  supabaseConfig.anonKey &&
+  !supabaseConfig.url.includes("PASTE_") &&
+  !supabaseConfig.anonKey.includes("PASTE_")
+);
+const supabaseClient = hasSupabaseConfig ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey) : null;
+
 const baseBusinesses = [
   {
     id: "restaurante-el-mirador",
@@ -223,8 +233,45 @@ function getBusinesses(includePending = false) {
   return includePending ? all : all.filter((business) => business.status === "approved");
 }
 
-function getDirectoryCategories() {
-  return [...new Set([...categories.map((category) => category.name), ...getBusinesses(true).map((business) => business.category)])].filter(Boolean);
+function normalizeBusiness(business) {
+  return {
+    ...business,
+    id: business.id || slugify(business.name || "negocio"),
+    whatsapp: business.whatsapp || "",
+    map: business.map || `https://maps.google.com/?q=${encodeURIComponent(`${business.name || ""} ${business.address || "Sabana Iglesia"}`)}`,
+    hours: business.hours || "Horario por confirmar",
+    social: business.social || "#",
+    image: business.image || "",
+    photos: Array.isArray(business.photos) ? business.photos : [],
+    featured: Boolean(business.featured),
+    status: business.status || "approved"
+  };
+}
+
+async function loadSupabaseBusinesses(includePending = false) {
+  if (!supabaseClient) return [];
+  let query = supabaseClient
+    .from("businesses")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (!includePending) {
+    query = query.eq("status", "approved");
+  }
+  const { data, error } = await query;
+  if (error) {
+    console.warn("No se pudieron cargar negocios desde Supabase:", error.message);
+    return [];
+  }
+  return (data || []).map(normalizeBusiness);
+}
+
+async function getDisplayBusinesses(includePending = false) {
+  const remoteBusinesses = await loadSupabaseBusinesses(includePending);
+  return remoteBusinesses.length ? remoteBusinesses : getBusinesses(includePending);
+}
+
+function getDirectoryCategories(businesses = getBusinesses(true)) {
+  return [...new Set([...categories.map((category) => category.name), ...businesses.map((business) => business.category)])].filter(Boolean);
 }
 
 function getPrimaryContact(business) {
@@ -276,10 +323,7 @@ function renderHeader() {
       <div class="nav__links" data-nav-links>
         ${navLinks.map(([href, label, key]) => `<a href="${href}" ${page === key ? 'aria-current="page"' : ""}>${label}</a>`).join("")}
       </div>
-    </nav>
-    <div class="demo-notice">
-      <div class="container">Sitio en modo demo: los negocios mostrados son ejemplos. Pronto podrás agregar listados reales.</div>
-    </div>`;
+    </nav>`;
   const toggle = header.querySelector("[data-nav-toggle]");
   const links = header.querySelector("[data-nav-links]");
   toggle.addEventListener("click", () => {
@@ -436,13 +480,13 @@ function renderCategories() {
   });
 }
 
-function renderCategoryLanding() {
+async function renderCategoryLanding() {
   const target = document.querySelector("[data-category-landing]");
   if (!target) return;
   const categoryName = target.dataset.categoryLanding;
   const category = categories.find((item) => item.name === categoryName);
   if (!category) return;
-  const businesses = getBusinesses().filter((business) => business.category === category.name);
+  const businesses = (await getDisplayBusinesses()).filter((business) => business.category === category.name);
   target.innerHTML = `
     <section class="page-hero">
       <div class="container">
@@ -471,10 +515,12 @@ function renderCategoryLanding() {
     </section>`;
 }
 
-function renderFeatured() {
+async function renderFeatured() {
   const target = document.querySelector("[data-featured-businesses]");
   if (!target) return;
-  target.innerHTML = getBusinesses().filter((business) => business.featured).map(businessCard).join("");
+  const businesses = await getDisplayBusinesses();
+  const featured = businesses.filter((business) => business.featured);
+  target.innerHTML = (featured.length ? featured : businesses.slice(0, 3)).map(businessCard).join("");
 }
 
 function renderPromotions() {
@@ -495,7 +541,7 @@ function renderPromotions() {
     </article>`).join("");
 }
 
-function renderDirectory() {
+async function renderDirectory() {
   const results = document.querySelector("[data-directory-results]");
   if (!results) return;
   const search = document.querySelector("[data-directory-search]");
@@ -505,19 +551,20 @@ function renderDirectory() {
   const params = new URLSearchParams(window.location.search);
   let activeCategory = params.get("category") || "Todos";
   search.value = params.get("q") || "";
+  const businesses = await getDisplayBusinesses();
 
   if (filterDetails && window.matchMedia("(max-width: 680px)").matches) {
     filterDetails.removeAttribute("open");
   }
 
   const drawFilters = () => {
-    filters.innerHTML = ["Todos", ...getDirectoryCategories()].map((name) => `
+    filters.innerHTML = ["Todos", ...getDirectoryCategories(businesses)].map((name) => `
       <button class="btn filter-chip ${name === activeCategory ? "is-active" : ""}" type="button" data-category="${name}">${name}</button>`).join("");
   };
 
   const drawResults = () => {
     const query = search.value.trim().toLowerCase();
-    const filtered = getBusinesses().filter((business) => {
+    const filtered = businesses.filter((business) => {
       const matchesCategory = activeCategory === "Todos" || business.category === activeCategory;
       const haystack = `${business.name} ${business.category} ${business.description}`.toLowerCase();
       return matchesCategory && haystack.includes(query);
@@ -537,12 +584,13 @@ function renderDirectory() {
   drawResults();
 }
 
-function renderBusinessProfile() {
+async function renderBusinessProfile() {
   const target = document.querySelector("[data-business-profile]");
   if (!target) return;
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id") || baseBusinesses[0].id;
-  const business = getBusinesses(true).find((item) => item.id === id) || baseBusinesses[0];
+  const businesses = await getDisplayBusinesses(true);
+  const business = businesses.find((item) => item.id === id) || baseBusinesses[0];
   const initials = business.name.split(" ").map((part) => part[0]).join("").slice(0, 3).toUpperCase();
   const contact = getPrimaryContact(business);
   const photos = business.photos && business.photos.length ? business.photos : [business.image, business.image, business.image].filter(Boolean);
@@ -594,6 +642,10 @@ function populateCategorySelect() {
 function renderBusinessForm() {
   const form = document.querySelector("[data-business-form]");
   if (!form) return;
+  const message = document.querySelector("[data-form-message]");
+  if (message && !supabaseClient) {
+    message.textContent = "Completa el formulario para enviar tu negocio a revisión.";
+  }
   const categorySelect = form.querySelector("[data-category-select]");
   const otherCategoryField = form.querySelector("[data-other-category-field]");
   const otherCategoryInput = form.querySelector("[name='otherCategory']");
@@ -603,13 +655,12 @@ function renderBusinessForm() {
     otherCategoryInput.required = usesOther;
     if (!usesOther) otherCategoryInput.value = "";
   });
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(form));
     const category = data.category === "Otra" ? data.otherCategory.trim() : data.category;
     const photos = (data.photos || "").split(",").map((photo) => photo.trim()).filter(Boolean);
     const item = {
-      id: `${slugify(data.name)}-${Date.now()}`,
       name: data.name,
       category,
       description: data.description,
@@ -625,9 +676,19 @@ function renderBusinessForm() {
       featured: false,
       status: "pending"
     };
-    setSubmissions([item, ...getSubmissions()]);
+    if (supabaseClient) {
+      const { error } = await supabaseClient.from("businesses").insert([item]);
+      if (error) {
+        message.textContent = `No se pudo enviar la solicitud: ${error.message}`;
+        return;
+      }
+      form.reset();
+      message.textContent = "Solicitud enviada a Supabase para revisión.";
+      return;
+    }
+    setSubmissions([{ ...item, id: `${slugify(data.name)}-${Date.now()}` }, ...getSubmissions()]);
     form.reset();
-    document.querySelector("[data-form-message]").textContent = "Solicitud enviada. Puedes revisarla en el panel admin.";
+    message.textContent = "Solicitud enviada para revisión.";
   });
 }
 
