@@ -140,6 +140,286 @@ const baseBusinesses = [
   }
 ];
 
+const importedBusinesses = [
+  {
+    id: "centro-ferretero-sabana-iglesia",
+    name: "Centro Ferretero Sabana Iglesia",
+    category: "Ferreterías",
+    description: "Hardware / construction supplies. Also listed by WorldPlaces at Av Santiago #12 with coordinates 19.32579,-70.75332.",
+    phone: "809 587-1076",
+    whatsapp: "",
+    address: "86GW+C7J, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Centro%20Ferretero%20Sabana%20Iglesia%2086GW%2BC7J%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Lun-Vie 7:30-17:30; Sáb 7:30-15:00; Dom cerrado",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "ferreteria-sabana-iglesia",
+    name: "Ferretería Sabana Iglesia",
+    category: "Ferreterías",
+    description: "Hardware store. 4.7 rating listed.",
+    phone: "809-587-0366",
+    whatsapp: "",
+    address: "Av Santiago 22, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Ferreter%C3%ADa%20Sabana%20Iglesia%20Av%20Santiago%2022%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "repuestos-y-ferreteria-santana",
+    name: "Repuestos y Ferretería Santana",
+    category: "Talleres",
+    description: "Automotive / motorcycle parts. 27 reviews listed.",
+    phone: "809 337-4022",
+    whatsapp: "",
+    address: "986C+53C, Carretera Santiago-Baitoa, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Repuestos%20y%20Ferreter%C3%ADa%20Santana%20986C%2B53C%2C%20Carretera%20Santiago-Baitoa%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Lun-Sáb 8:00-18:30; Dom 8:00-12:00",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "repuestos-almonte",
+    name: "Repuestos Almonte",
+    category: "Talleres",
+    description: "Auto parts.",
+    phone: "809-587-1250",
+    whatsapp: "",
+    address: "V Estebania 38, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Repuestos%20Almonte%20V%20Estebania%2038%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "cd-movil-comunicaciones",
+    name: "Cd-Móvil Comunicaciones",
+    category: "Internet",
+    description: "Electronics / mobile phones. Founded in 2005 according to source.",
+    phone: "809 337-4548",
+    whatsapp: "",
+    address: "Carretera Santiago-Baitoa, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Cd-M%C3%B3vil%20Comunicaciones%20Carretera%20Santiago-Baitoa%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Lun-Vie 8:30-19:00; Sáb 9:00-13:00 y 14:00-15:00; Dom 9:00-16:00",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "super-centro-de-internet-el-pana",
+    name: "Super Centro de Internet El Pana",
+    category: "Internet",
+    description: "Internet services. 4.7 rating listed.",
+    phone: "809-587-1493",
+    whatsapp: "",
+    address: "J P Duarte 142, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Super%20Centro%20de%20Internet%20El%20Pana%20J%20P%20Duarte%20142%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "farmacia-iglesia-miscelaneos",
+    name: "Farmacia Iglesia Miscelaneos",
+    category: "Farmacias",
+    description: "Pharmacy. 4.7 rating listed.",
+    phone: "809-587-0282",
+    whatsapp: "",
+    address: "J P Duarte 27, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Farmacia%20Iglesia%20Miscelaneos%20J%20P%20Duarte%2027%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "colmado-corona-y-diaz",
+    name: "Colmado Corona y Díaz",
+    category: "Colmados",
+    description: "Colmado / grocery. 4.7 rating listed.",
+    phone: "809-587-0139",
+    whatsapp: "",
+    address: "Av Santiago 13, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Colmado%20Corona%20y%20D%C3%ADaz%20Av%20Santiago%2013%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "colmado-feliciano",
+    name: "Colmado Feliciano",
+    category: "Colmados",
+    description: "Colmado / grocery. 4.7 rating listed.",
+    phone: "809-587-1135",
+    whatsapp: "",
+    address: "V Estebanía 1, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Colmado%20Feliciano%20V%20Esteban%C3%ADa%201%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "jehova-es-mi-pastor",
+    name: "Jehová Es Mi Pastor",
+    category: "Servicios",
+    description: "Bookstore.",
+    phone: "809-587-1485",
+    whatsapp: "",
+    address: "V Estebanía 11, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Jehov%C3%A1%20Es%20Mi%20Pastor%20V%20Esteban%C3%ADa%2011%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "caribe-express",
+    name: "Caribe Express",
+    category: "Servicios",
+    description: "Currency exchange / money services. 4.7 rating listed.",
+    phone: "809-587-0012",
+    whatsapp: "",
+    address: "Av P Amarillo 73, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Caribe%20Express%20Av%20P%20Amarillo%2073%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "vimenca-western-union",
+    name: "Vimenca & Western Union",
+    category: "Servicios",
+    description: "Money transfer / financial services.",
+    phone: "809 587-1216",
+    whatsapp: "",
+    address: "87F3+7GP, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Vimenca%20%26%20Western%20Union%2087F3%2B7GP%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "centro-comercial-dr-placencia",
+    name: "Centro Comercial Dr Placencia",
+    category: "Ferreterías",
+    description: "Shopping plaza. 4.7 rating listed. Another directory listing shows 809-587-0086 at Ppal 1, M La Zanja.",
+    phone: "809-587-0144",
+    whatsapp: "",
+    address: "P Díaz 160, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Centro%20Comercial%20Dr%20Placencia%20P%20D%C3%ADaz%20160%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "chef-familiar-restaurant-la-zanja",
+    name: "Chef Familiar Restaurant, La Zanja",
+    category: "Restaurantes",
+    description: "Restaurant. 5.0 rating / 5+ reviews listed.",
+    phone: "809 396-8282",
+    whatsapp: "",
+    address: "Carretera principal, La Zanja #3-35, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Chef%20Familiar%20Restaurant%2C%20La%20Zanja%20Carretera%20principal%2C%20La%20Zanja%20%233-35%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "restaurante-y-pescaderia-teo-3",
+    name: "Restaurante y Pescadería Teo #3",
+    category: "Restaurantes",
+    description: "Restaurant / seafood. 4.4 rating / 594 Google reviews listed.",
+    phone: "809-604-0658",
+    whatsapp: "",
+    address: "77MJ+VWX, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Restaurante%20y%20Pescader%C3%ADa%20Teo%20%233%2077MJ%2BVWX%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "empanadas-monumental-sabana-iglesia",
+    name: "Empanadas Monumental Sabana Iglesia",
+    category: "Restaurantes",
+    description: "Food and drink.",
+    phone: "+1 829-778-2762",
+    whatsapp: "",
+    address: "86FW+GMM, Ave Juan Pablo Duarte, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Empanadas%20Monumental%20Sabana%20Iglesia%2086FW%2BGMM%2C%20Ave%20Juan%20Pablo%20Duarte%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Tue-Dom 16:00-00:00",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "armando-car-wash",
+    name: "Armando Car-Wash",
+    category: "Talleres",
+    description: "Car wash / auto detailing.",
+    phone: "",
+    whatsapp: "",
+    address: "86CW+Q7C, Sabana Iglesia 51000, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Armando%20Car-Wash%2086CW%2BQ7C%2C%20Sabana%20Iglesia%2051000%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Mon-Dom 8:00-22:00",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "centro-tecnologico-comunitario-sabana-ig",
+    name: "Centro Tecnológico Comunitario Sabana IG",
+    category: "Internet",
+    description: "Community technology center / social service.",
+    phone: "809-587-1087",
+    whatsapp: "",
+    address: "M E Peréz C 1, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Centro%20Tecnol%C3%B3gico%20Comunitario%20Sabana%20IG%20M%20E%20Per%C3%A9z%20C%201%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  },
+  {
+    id: "estacion-texaco-sabana-iglesia",
+    name: "Estación Texaco Sabana Iglesia",
+    category: "Servicios",
+    description: "Gas station. Directory result labels it as Estación Texaco Sabana Iglesia.",
+    phone: "809-587-0040",
+    whatsapp: "",
+    address: "Av Santiago 10, Sabana Iglesia, Santiago",
+    map: "https://www.google.com/maps/search/?api=1&query=Estaci%C3%B3n%20Texaco%20Sabana%20Iglesia%20Av%20Santiago%2010%2C%20Sabana%20Iglesia%2C%20Santiago",
+    hours: "Horario por confirmar",
+    social: "#",
+    featured: false,
+    status: "approved"
+  }
+];
+
+const categoryImageDefaults = {
+  Restaurantes: "assets/demo-restaurant.svg",
+  Colmados: "assets/demo-colmado.svg",
+  Ferreterías: "assets/demo-ferreteria.svg",
+  Farmacias: "assets/demo-farmacia.svg",
+  Salones: "assets/demo-salon.svg",
+  Talleres: "assets/demo-taller.svg",
+  Internet: "assets/demo-internet.svg",
+  Servicios: "assets/sabana-iglesia-drone.jpg"
+};
+
 const restaurantMenus = {
   "restaurante-el-mirador": [
     {
@@ -229,11 +509,13 @@ function setManagers(items) {
 
 function getBusinesses(includePending = false) {
   const submissions = getSubmissions();
-  const all = [...baseBusinesses, ...submissions];
+  const all = [...baseBusinesses, ...importedBusinesses, ...submissions].map(normalizeBusiness);
   return includePending ? all : all.filter((business) => business.status === "approved");
 }
 
 function normalizeBusiness(business) {
+  const defaultImage = categoryImageDefaults[business.category] || "assets/sabana-iglesia-drone.jpg";
+  const photos = Array.isArray(business.photos) && business.photos.length ? business.photos : [business.image || defaultImage, "assets/sabana-iglesia-drone.jpg", business.image || defaultImage];
   return {
     ...business,
     id: business.id || slugify(business.name || "negocio"),
@@ -241,8 +523,8 @@ function normalizeBusiness(business) {
     map: business.map || `https://maps.google.com/?q=${encodeURIComponent(`${business.name || ""} ${business.address || "Sabana Iglesia"}`)}`,
     hours: business.hours || "Horario por confirmar",
     social: business.social || "#",
-    image: business.image || "",
-    photos: Array.isArray(business.photos) ? business.photos : [],
+    image: business.image || defaultImage,
+    photos,
     featured: Boolean(business.featured),
     status: business.status || "approved"
   };
