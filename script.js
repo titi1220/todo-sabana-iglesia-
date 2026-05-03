@@ -21,124 +21,7 @@ const hasSupabaseConfig = Boolean(
 );
 const supabaseClient = hasSupabaseConfig ? window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey) : null;
 
-const baseBusinesses = [
-  {
-    id: "restaurante-el-mirador",
-    name: "Restaurante El Mirador",
-    category: "Restaurantes",
-    description: "Comida criolla, jugos naturales y vista hacia las montañas para familias, viajeros y reuniones locales.",
-    phone: "809-555-0101",
-    whatsapp: "https://wa.me/18095550101",
-    address: "Carretera principal, Sabana Iglesia",
-    map: "https://maps.google.com/?q=Sabana+Iglesia+Dominican+Republic",
-    hours: "Lun-Dom 10:00 AM - 10:00 PM",
-    social: "https://instagram.com/todosabanaiglesia",
-    image: "assets/demo-restaurant.svg",
-    photos: ["assets/demo-restaurant.svg", "assets/menu-criollo.svg", "assets/menu-picadera.svg"],
-    services: ["Entrega", "Recoger"],
-    featured: true,
-    status: "approved"
-  },
-  {
-    id: "colmado-la-confianza",
-    name: "Colmado La Confianza",
-    category: "Colmados",
-    description: "Productos básicos, bebidas, entrega cercana y servicio de comunidad en el centro del municipio.",
-    phone: "809-555-0112",
-    whatsapp: "https://wa.me/18095550112",
-    address: "Calle Duarte, Sabana Iglesia",
-    map: "https://maps.google.com/?q=Sabana+Iglesia+Santiago",
-    hours: "Todos los días 7:00 AM - 11:00 PM",
-    social: "https://facebook.com/todosabanaiglesia",
-    image: "assets/demo-colmado.svg",
-    photos: ["assets/demo-colmado.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-colmado.svg"],
-    services: ["Entrega", "Recoger"],
-    featured: true,
-    status: "approved"
-  },
-  {
-    id: "ferreteria-bao",
-    name: "Ferretería Bao",
-    category: "Ferreterías",
-    description: "Materiales de construcción, pinturas, herramientas y asesoría para proyectos del hogar.",
-    phone: "809-555-0140",
-    whatsapp: "https://wa.me/18095550140",
-    address: "Av. Principal, salida hacia Bao",
-    map: "https://maps.google.com/?q=Presa+de+Bao",
-    hours: "Lun-Sab 8:00 AM - 6:30 PM",
-    social: "https://instagram.com/todosabanaiglesia",
-    image: "assets/demo-ferreteria.svg",
-    photos: ["assets/demo-ferreteria.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-ferreteria.svg"],
-    services: ["Entrega", "Recoger"],
-    featured: true,
-    status: "approved"
-  },
-  {
-    id: "farmacia-san-jose",
-    name: "Farmacia San Jose",
-    category: "Farmacias",
-    description: "Medicamentos, cuidado personal, orientación farmacéutica y pagos móviles.",
-    phone: "809-555-0177",
-    whatsapp: "https://wa.me/18095550177",
-    address: "Centro de Sabana Iglesia",
-    map: "https://maps.google.com/?q=Sabana+Iglesia",
-    hours: "Lun-Dom 8:00 AM - 9:00 PM",
-    social: "https://facebook.com/todosabanaiglesia",
-    image: "assets/demo-farmacia.svg",
-    photos: ["assets/demo-farmacia.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-farmacia.svg"],
-    services: ["Entrega", "Recoger"],
-    featured: false,
-    status: "approved"
-  },
-  {
-    id: "salon-nueva-imagen",
-    name: "Salón Nueva Imagen",
-    category: "Salones",
-    description: "Peinados, uñas, maquillaje, barbería y paquetes para bodas y eventos.",
-    phone: "809-555-0188",
-    whatsapp: "https://wa.me/18095550188",
-    address: "Sector La Zanja, Sabana Iglesia",
-    map: "https://maps.google.com/?q=La+Zanja+Sabana+Iglesia",
-    hours: "Mar-Dom 9:00 AM - 7:00 PM",
-    social: "https://instagram.com/todosabanaiglesia",
-    image: "assets/demo-salon.svg",
-    photos: ["assets/demo-salon.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-salon.svg"],
-    featured: false,
-    status: "approved"
-  },
-  {
-    id: "taller-hermanos-rodriguez",
-    name: "Taller Hermanos Rodríguez",
-    category: "Talleres",
-    description: "Mecánica general, cambio de aceite, frenos y asistencia para vehículos de la zona.",
-    phone: "809-555-0303",
-    whatsapp: "https://wa.me/18095550303",
-    address: "Entrada de Sabana Iglesia",
-    map: "https://maps.google.com/?q=Sabana+Iglesia",
-    hours: "Lun-Sab 8:00 AM - 6:00 PM",
-    social: "#",
-    image: "assets/demo-taller.svg",
-    photos: ["assets/demo-taller.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-taller.svg"],
-    featured: false,
-    status: "approved"
-  },
-  {
-    id: "net-si",
-    name: "Net SI Internet",
-    category: "Internet",
-    description: "Instalación de internet residencial, soporte técnico y soluciones para pequeños negocios.",
-    phone: "809-555-0200",
-    whatsapp: "https://wa.me/18095550200",
-    address: "Sabana Iglesia, Santiago",
-    map: "https://maps.google.com/?q=Sabana+Iglesia+Santiago",
-    hours: "Lun-Sab 8:30 AM - 6:00 PM",
-    social: "https://facebook.com/todosabanaiglesia",
-    image: "assets/demo-internet.svg",
-    photos: ["assets/demo-internet.svg", "assets/sabana-iglesia-drone.jpg", "assets/demo-internet.svg"],
-    featured: false,
-    status: "approved"
-  }
-];
+const baseBusinesses = [];
 
 const importedBusinesses = [
   {
@@ -468,9 +351,9 @@ const tourism = [
 ];
 
 const promotions = [
-  { category: "Restaurantes", title: "Combo familiar criollo", business: "Restaurante El Mirador", detail: "Almuerzo para 4 personas con jugos naturales incluidos.", tag: "Fin de semana", href: "business.html?id=restaurante-el-mirador" },
-  { category: "Colmados", title: "Especial de la compra", business: "Colmado La Confianza", detail: "Descuentos en productos básicos seleccionados para la despensa.", tag: "Hasta domingo", href: "business.html?id=colmado-la-confianza" },
-  { category: "Salones", title: "Paquete de belleza", business: "Salón Nueva Imagen", detail: "Lavado, secado y uñas con precio especial por cita.", tag: "Con reserva", href: "business.html?id=salon-nueva-imagen" },
+  { category: "Restaurantes", title: "Especial para compartir", business: "Chef Familiar Restaurant, La Zanja", detail: "Promoción local para almuerzo o cena familiar. Confirma disponibilidad por teléfono.", tag: "Esta semana", href: "business.html?id=chef-familiar-restaurant-la-zanja" },
+  { category: "Colmados", title: "Compra de la semana", business: "Colmado Corona y Díaz", detail: "Productos básicos y artículos diarios para la comunidad local.", tag: "Consultar", href: "business.html?id=colmado-corona-y-diaz" },
+  { category: "Ferreterías", title: "Materiales y herramientas", business: "Centro Ferretero Sabana Iglesia", detail: "Opciones para construcción, reparaciones y proyectos del hogar.", tag: "Disponible", href: "business.html?id=centro-ferretero-sabana-iglesia" },
   { category: "Eventos", title: "Promociona tu actividad", business: "Todo Sabana Iglesia", detail: "Publica eventos comunitarios, deportivos o religiosos en la guía.", tag: "Cupos abiertos", href: "events.html" }
 ];
 
@@ -628,7 +511,7 @@ function renderFooter() {
         <h3>Guía</h3>
         <a href="directory.html">Directorio</a>
         <a href="categories.html">Categorías</a>
-        <a href="business.html">Perfil demo</a>
+        <a href="business.html">Perfil de negocio</a>
         <a href="add-business.html">Añadir negocio</a>
       </div>
       <div>
@@ -870,9 +753,22 @@ async function renderBusinessProfile() {
   const target = document.querySelector("[data-business-profile]");
   if (!target) return;
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id") || baseBusinesses[0].id;
   const businesses = await getDisplayBusinesses(true);
-  const business = businesses.find((item) => item.id === id) || baseBusinesses[0];
+  const id = params.get("id") || businesses[0]?.id;
+  const business = businesses.find((item) => item.id === id) || businesses[0];
+  if (!business) {
+    target.innerHTML = `
+      <section class="section">
+        <div class="container">
+          <article class="empty-card">
+            <h1>No hay negocios publicados</h1>
+            <p>Agrega el primer negocio para crear perfiles en Todo Sabana Iglesia.</p>
+            <a class="btn btn--primary" href="add-business.html">Añadir negocio</a>
+          </article>
+        </div>
+      </section>`;
+    return;
+  }
   const initials = business.name.split(" ").map((part) => part[0]).join("").slice(0, 3).toUpperCase();
   const contact = getPrimaryContact(business);
   const photos = business.photos && business.photos.length ? business.photos : [business.image, business.image, business.image].filter(Boolean);
@@ -1046,7 +942,7 @@ function renderAdmin() {
           <button class="btn btn--outline" data-action="save" type="button">Guardar</button>
           <button class="btn btn--outline" data-action="delete" type="button">Eliminar</button>
         </div>
-      </article>`).join("") : `<p>No hay solicitudes pendientes. Crea una demo o envia un negocio desde el formulario.</p>`;
+      </article>`).join("") : `<p>No hay solicitudes pendientes. Los negocios enviados desde el formulario aparecerán aquí.</p>`;
     }
   };
 
@@ -1070,7 +966,7 @@ function renderAdmin() {
           <button class="btn btn--outline" data-manager-action="save" type="button">Guardar</button>
           <button class="btn btn--outline" data-manager-action="delete" type="button">Eliminar</button>
         </div>
-      </article>`).join("") : `<p>No hay solicitudes de managers. Crea una demo o envía una solicitud desde Contacto.</p>`;
+      </article>`).join("") : `<p>No hay solicitudes de managers. Las solicitudes enviadas desde Contacto aparecerán aquí.</p>`;
   };
 
   list?.addEventListener("click", (event) => {
@@ -1113,43 +1009,9 @@ function renderAdmin() {
     drawManagers();
   });
 
-  document.querySelector("[data-seed-pending]")?.addEventListener("click", () => {
-    const demo = {
-      id: `demo-${Date.now()}`,
-      name: "Taller Hermanos Rodriguez",
-      category: "Talleres",
-      description: "Mecánica general, cambio de aceite, frenos y asistencia en carretera.",
-      phone: "809-555-0303",
-      whatsapp: "https://wa.me/18095550303",
-      address: "Entrada de Sabana Iglesia",
-      map: "https://maps.google.com/?q=Sabana+Iglesia",
-      hours: "Lun-Sab 8:00 AM - 6:00 PM",
-      social: "#",
-      featured: false,
-      status: "pending"
-    };
-    setSubmissions([demo, ...getSubmissions()]);
-    draw();
-  });
-
   document.querySelector("[data-clear-submissions]")?.addEventListener("click", () => {
     setSubmissions([]);
     draw();
-  });
-
-  document.querySelector("[data-seed-manager]")?.addEventListener("click", () => {
-    const demo = {
-      id: `manager-demo-${Date.now()}`,
-      name: "Manager Demo",
-      email: "manager@ejemplo.com",
-      phone: "809-555-2026",
-      role: "Manager de negocios",
-      reason: "Quiero ayudar a revisar información de negocios locales y mantener el directorio actualizado.",
-      status: "pending",
-      createdAt: new Date().toISOString()
-    };
-    setManagers([demo, ...getManagers()]);
-    drawManagers();
   });
 
   document.querySelector("[data-clear-managers]")?.addEventListener("click", () => {
