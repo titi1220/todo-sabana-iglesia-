@@ -855,7 +855,8 @@ function renderBusinessForm() {
       status: "pending"
     };
     if (supabaseClient) {
-      const { error } = await supabaseClient.from("businesses").insert([item]);
+      const { email, ...supabaseItem } = item;
+      const { error } = await supabaseClient.from("businesses").insert([supabaseItem]);
       if (error) {
         message.textContent = `No se pudo enviar la solicitud: ${error.message}`;
         return;
