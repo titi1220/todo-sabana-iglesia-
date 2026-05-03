@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacto | Todo Sabana Iglesia</title>
+    <meta name="description" content="Contacta a Todo Sabana Iglesia para negocios, noticias, eventos, turismo y publicidad local.">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="contact">
+    <header class="site-header" data-site-header></header>
+    <main class="page-shell">
+      <section class="page-hero"><div class="container"><p class="eyebrow">Contacto</p><h1>Hablemos de Sabana Iglesia</h1><p>Envía noticias, eventos, correcciones de negocios o propuestas de publicidad.</p></div></section>
+      <section class="section">
+        <div class="container form-layout">
+          <form class="business-form" data-contact-form>
+            <div class="form-grid">
+              <label>Nombre<input required name="name" placeholder="Tu nombre"></label>
+              <label>Correo<input required type="email" name="email" placeholder="tu@email.com"></label>
+            </div>
+            <label>Asunto<input required name="subject" placeholder="Negocio, evento, noticia o publicidad"></label>
+            <label>Mensaje<textarea required name="message" rows="6" placeholder="Cuéntanos en qué podemos ayudarte."></textarea></label>
+            <button class="btn btn--primary" type="submit">Enviar mensaje</button>
+            <p class="form-message" data-form-message role="status"></p>
+          </form>
+          <aside class="help-panel contact-card">
+            <h2>Todo Sabana Iglesia</h2>
+            <p>Sabana Iglesia, Santiago, República Dominicana</p>
+            <a class="btn btn--whatsapp" href="https://wa.me/18095552026">Escribir por WhatsApp</a>
+            <p><strong>WhatsApp:</strong> 809-555-2026</p>
+            <p><strong>Email:</strong> hola@todosabanaiglesia.com</p>
+            <p><strong>Redes:</strong> @todosabanaiglesia</p>
+          </aside>
+        </div>
+      </section>
+      <section class="section section--muted">
+        <div class="container form-layout">
+          <div>
+            <p class="eyebrow">Acceso de manager</p>
+            <h2>Solicitar acceso para administrar</h2>
+            <p class="lead">Usa este formulario si quieres ayudar a revisar negocios, eventos o contenido local. En esta versión demo, las solicitudes se guardan en este navegador y se aprueban desde el panel admin.</p>
+          </div>
+          <form class="business-form" data-manager-form>
+            <label>Nombre completo<input required name="name" placeholder="Tu nombre"></label>
+            <label>Correo<input required type="email" name="email" placeholder="tu@email.com"></label>
+            <label>Teléfono o WhatsApp<input required name="phone" placeholder="809-000-0000"></label>
+            <label>Rol solicitado<select required name="role">
+              <option value="">Selecciona un rol</option>
+              <option>Manager de negocios</option>
+              <option>Editor de eventos</option>
+              <option>Editor de noticias</option>
+              <option>Administrador general</option>
+            </select></label>
+            <label>¿Por qué quieres ayudar?<textarea required name="reason" rows="4" placeholder="Cuéntanos tu relación con Sabana Iglesia y qué puedes revisar."></textarea></label>
+            <button class="btn btn--primary" type="submit">Solicitar acceso</button>
+            <p class="form-message" data-manager-message role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+  </body>
+</html>

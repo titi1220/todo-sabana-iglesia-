@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Directorio de Negocios | Todo Sabana Iglesia</title>
+    <meta name="description" content="Busca negocios y servicios locales en Sabana Iglesia por nombre, categoría, teléfono, WhatsApp y ubicación.">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="directory">
+    <header class="site-header" data-site-header></header>
+    <main class="page-shell">
+      <section class="page-hero page-hero--compact">
+        <div class="container">
+          <p class="eyebrow">Directorio local</p>
+          <h1>Negocios y servicios en Sabana Iglesia</h1>
+          <p>Filtra por categoría o busca por nombre para encontrar información de contacto, horarios y ubicación.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container directory-layout">
+          <aside class="filter-panel">
+            <details class="filter-details" data-filter-details open>
+              <summary>Buscar y filtrar</summary>
+              <div class="filter-details__body">
+                <label for="directory-search">Buscar</label>
+                <input id="directory-search" data-directory-search type="search" placeholder="Nombre o categoría">
+                <div>
+                  <h2>Categorías</h2>
+                  <div class="filter-list" data-directory-filters></div>
+                </div>
+              </div>
+            </details>
+          </aside>
+          <div>
+            <section class="map-section" aria-label="Mapa de Sabana Iglesia">
+              <div class="map-section__copy">
+                <p class="eyebrow">Mapa local</p>
+                <h2>Ubica negocios en Sabana Iglesia</h2>
+                <p>Abre el mapa general del municipio o usa “Ver mapa” en cada negocio para ir directo a su ubicación.</p>
+                <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&query=Sabana%20Iglesia%2C%20Santiago%2C%20Rep%C3%BAblica%20Dominicana">Abrir Google Maps</a>
+              </div>
+              <iframe
+                title="Mapa de Sabana Iglesia, Santiago"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Sabana%20Iglesia%2C%20Santiago%2C%20Rep%C3%BAblica%20Dominicana&output=embed">
+              </iframe>
+            </section>
+            <div class="results-bar">
+              <strong data-results-count>Negocios</strong>
+              <a class="btn btn--outline" href="add-business.html">Añadir negocio</a>
+            </div>
+            <div class="business-grid business-grid--list" data-directory-results></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+  </body>
+</html>

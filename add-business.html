@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Añadir mi Negocio | Todo Sabana Iglesia</title>
+    <meta name="description" content="Formulario para registrar negocios, servicios y emprendimientos de Sabana Iglesia en el directorio local.">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="add">
+    <header class="site-header" data-site-header></header>
+    <main class="page-shell">
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Registro local</p>
+          <h1>Añadir mi negocio</h1>
+          <p>Completa la información principal. Las solicitudes quedan pendientes para revisión en el panel administrativo local.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container form-layout">
+          <form class="business-form" data-business-form>
+            <div class="form-grid">
+              <label>Nombre del negocio<input name="name" required placeholder="Ej. Farmacia Central"></label>
+              <label>Categoría<select name="category" required data-category-select></select></label>
+              <label class="is-hidden" data-other-category-field>Otra categoría<input name="otherCategory" placeholder="Ej. Panadería, repostería, clínica"></label>
+              <label>Teléfono<input name="phone" required placeholder="809-000-0000"></label>
+              <label>WhatsApp<input name="whatsapp" placeholder="https://wa.me/18090000000"></label>
+              <label>Dirección<input name="address" required placeholder="Calle principal, Sabana Iglesia"></label>
+              <label>Horario<input name="hours" placeholder="Lun-Sab 8:00 AM - 7:00 PM"></label>
+            </div>
+            <label>Descripción<textarea name="description" required rows="5" placeholder="Describe tus productos, servicios y lo que hace especial tu negocio."></textarea></label>
+            <div class="form-grid">
+              <label>Google Maps<input name="map" placeholder="https://maps.google.com/..."></label>
+              <label>Instagram o Facebook<input name="social" placeholder="https://instagram.com/..."></label>
+              <label>URL de logo o foto principal<input name="image" placeholder="https://..."></label>
+              <label>Correo de contacto<input name="email" type="email" placeholder="negocio@ejemplo.com"></label>
+            </div>
+            <label>Galería de fotos<textarea name="photos" rows="3" placeholder="Pega enlaces de fotos separados por coma. Ej. fachada, productos, menú, interior"></textarea></label>
+            <div class="photo-guidance">
+              <strong>Fotos recomendadas</strong>
+              <span>Logo o fachada</span>
+              <span>Productos o servicios</span>
+              <span>Menú o precios</span>
+              <span>Interior o equipo</span>
+            </div>
+            <button class="btn btn--primary" type="submit">Enviar solicitud</button>
+            <p class="form-message" data-form-message role="status"></p>
+          </form>
+          <aside class="help-panel">
+            <h2>Qué incluye tu perfil</h2>
+            <p>Nombre, categoría, descripción, teléfono, WhatsApp, dirección, mapa, horario, imagen, redes sociales y estado de aprobación.</p>
+            <div class="help-tips">
+              <h3>Para mejores fotos</h3>
+              <p>Usa imágenes claras, horizontales y con buena luz. Evita capturas borrosas o textos pequeños difíciles de leer en celular.</p>
+            </div>
+            <a class="btn btn--outline" href="admin.html">Ver panel admin</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin | Todo Sabana Iglesia</title>
+    <meta name="description" content="Panel administrativo local para aprobar, editar y eliminar negocios enviados a Todo Sabana Iglesia.">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body data-page="admin">
+    <header class="site-header" data-site-header></header>
+    <main class="page-shell">
+      <section class="page-hero page-hero--compact"><div class="container"><p class="eyebrow">Administración</p><h1>Panel local</h1><p>Aprueba negocios y solicitudes de managers guardadas localmente en este navegador.</p></div></section>
+      <section class="section">
+        <div class="container admin-shell">
+          <div class="section-heading">
+            <p class="eyebrow">Solicitudes de negocios</p>
+            <h2>Negocios pendientes</h2>
+          </div>
+          <div class="admin-toolbar">
+            <button class="btn btn--primary" data-seed-pending type="button">Crear solicitud demo</button>
+            <button class="btn btn--outline" data-clear-submissions type="button">Limpiar solicitudes</button>
+          </div>
+          <div class="admin-list" data-admin-list></div>
+        </div>
+      </section>
+      <section class="section section--muted">
+        <div class="container admin-shell">
+          <div class="section-heading">
+            <p class="eyebrow">Managers</p>
+            <h2>Solicitudes de acceso</h2>
+          </div>
+          <div class="admin-toolbar">
+            <button class="btn btn--primary" data-seed-manager type="button">Crear manager demo</button>
+            <button class="btn btn--outline" data-clear-managers type="button">Limpiar managers</button>
+          </div>
+          <div class="admin-list" data-manager-list></div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+  </body>
+</html>
